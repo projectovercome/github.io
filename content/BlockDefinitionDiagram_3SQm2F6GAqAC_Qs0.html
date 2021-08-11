@@ -1,0 +1,641 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Block Definition Diagram - Midstream</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Proj. Overcome	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="BlockDefinitionDiagram_nA_ZRl6GAqAADxCj.html" class="PageParentTitle">Midstream : Block</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Block Definition Diagram - Midstream		</span>
+<a onclick="javascript: showVpLink('Proj. Overcome 8.5.vpp://diagram/3SQm2F6GAqAC.Qs0', 'Midstream\nProj. Overcome 8.5.vpp://diagram/3SQm2F6GAqAC.Qs0', 'Midstream', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|248.0|776.0|100.0|50.0|NOTE_MHU2c16GAqAC_RsG.html|NOTE_MHU2c16GAqAC_RsG.html|0HU2c16GAqAC.RsF" id="option0HU2c16GAqAC.RsF">Unnamed Note : Note</option>
+<option value="shape|52.0|776.0|150.0|70.0|SysMLBlock_AUqmc16GAqAC_Rq2.html|SysMLBlock_AUqmc16GAqAC_Rq2.html|AUqmc16GAqAC.Rq1" id="optionAUqmc16GAqAC.Rq1">United : Block</option>
+<option value="shape|330.0|575.0|143.0|115.0|SysMLBlock_Zi3Gc16GAqAC_Rp5.html|SysMLBlock_Zi3Gc16GAqAC_Rp5.html|Zi3Gc16GAqAC.Rp4" id="optionZi3Gc16GAqAC.Rp4">Wireless Sidechannel : Block</option>
+<option value="shape|887.0|297.0|182.0|106.0|SysMLBlock_MdbNOV6GAqAC_Qk5.html|SysMLBlock_MdbNOV6GAqAC_Qk5.html|0dbNOV6GAqAC.Qk4" id="option0dbNOV6GAqAC.Qk4">Point to Multipoint Node : Block</option>
+<option value="shape|1426.0|310.0|155.0|60.0|NOTE_axYvml6GAqAC_ZD6.html|NOTE_axYvml6GAqAC_ZD6.html|cxYvml6GAqAC.ZD5" id="optioncxYvml6GAqAC.ZD5">Unnamed Note : Note</option>
+<option value="shape|1168.0|298.0|130.0|40.0|SysMLConstraintBlock_V1F3ml6GAqAC_ZBS.html|SysMLConstraintBlock_V1F3ml6GAqAC_ZBS.html|Z1F3ml6GAqAC.ZBR" id="optionZ1F3ml6GAqAC.ZBR">Must be 5GHz : Constraint Block</option>
+<option value="shape|863.0|478.0|181.0|75.0|SysMLBlock_5mTXml6GAqAC_Y0f.html|SysMLBlock_5mTXml6GAqAC_Y0f.html|5mTXml6GAqAC.Y0e" id="option5mTXml6GAqAC.Y0e">Transmission of Signal : Block</option>
+<option value="shape|1145.0|383.0|162.0|105.0|SysMLBlock_6CFXml6GAqAC_Y0X.html|SysMLBlock_6CFXml6GAqAC_Y0X.html|6CFXml6GAqAC.Y0W" id="option6CFXml6GAqAC.Y0W">Ubiquiti 5GHz LTU Pro : Block</option>
+<option value="shape|1426.0|404.0|145.0|74.0|SysMLBlock_zp8pGl6GAqAC_YMJ.html|SysMLBlock_zp8pGl6GAqAC_YMJ.html|zp8pGl6GAqAC.YMI" id="optionzp8pGl6GAqAC.YMI">Households2 : Block</option>
+<option value="shape|370.0|101.0|144.0|40.0|NOTE_64wWGl6GAqAC_W9c.html|NOTE_64wWGl6GAqAC_W9c.html|a4wWGl6GAqAC.W9b" id="optiona4wWGl6GAqAC.W9b">Unnamed Note : Note</option>
+<option value="shape|11.0|2.0|286.0|68.0|SysMLBlock_YVlJyl6GAqAC_VHL.html|SysMLBlock_YVlJyl6GAqAC_VHL.html|oVlJyl6GAqAC.VHK" id="optionoVlJyl6GAqAC.VHK">Fiber Optics Cable2 : Block</option>
+<option value="shape|598.0|376.0|208.0|145.0|SysMLBlock_c_Y_XF6GAqAC_Qv_.html|SysMLBlock_c_Y_XF6GAqAC_Qv_.html|tHavXF6GAqAC.QzV" id="optiontHavXF6GAqAC.QzV">Ubiquiti EdgePoint : Block</option>
+<option value="shape|294.0|161.0|296.0|149.0|SysMLBlock_G4U3XF6GAqAC_Qyf.html|SysMLBlock_G4U3XF6GAqAC_Qyf.html|y4U3XF6GAqAC.Qye" id="optiony4U3XF6GAqAC.Qye">Intelligent Router Case : Block</option>
+<option value="shape|330.0|383.0|209.0|145.0|SysMLBlock_i5HhXF6GAqAC_Qwq.html|SysMLBlock_i5HhXF6GAqAC_Qwq.html|i5HhXF6GAqAC.Qwp" id="optioni5HhXF6GAqAC.Qwp">pfSense Router : Block</option>
+<option value="shape|31.0|383.0|208.0|145.0|SysMLBlock_c_Y_XF6GAqAC_Qv_.html|SysMLBlock_c_Y_XF6GAqAC_Qv_.html|c.Y.XF6GAqAC.Qv9" id="optionc.Y.XF6GAqAC.Qv9">Ubiquiti EdgePoint : Block</option>
+<option value="shape|11.0|138.0|249.0|160.0|SysMLBlock_Ev66XF6GAqAC_Quy.html|SysMLBlock_Ev66XF6GAqAC_Quy.html|_P66XF6GAqAC.Qux" id="option_P66XF6GAqAC.Qux">Ubiquiti airFiber60LR 60GHz : Block</option>
+<option value="shape|1.0|85.0|820.0|677.0|Rectangle_9_87ml6GAqAC_YyG.html|Rectangle_9_87ml6GAqAC_YyG.html|t.87ml6GAqAC.YyF" id="optiont.87ml6GAqAC.YyF">Unnamed Rectangle : Rectangle</option>
+<option value="shape|834.0|255.0|531.0|400.0|Rectangle_4nJ7ml6GAqAC_Yyd.html|Rectangle_4nJ7ml6GAqAC_Yyd.html|YnJ7ml6GAqAC.Yyc" id="optionYnJ7ml6GAqAC.Yyc">Unnamed Rectangle : Rectangle</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Midstream.png" usemap="#diagram_map" class="Image" width="1585" height="850"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="405.0, 310.0, 405.0, 383.0, 419.0, 383.0, 419.0, 310.0" coords2="405.0, 310.0, 405.0, 383.0, 419.0, 383.0, 419.0, 310.0" shape="poly" alt=":Association" id="areadiagram_map_4mmJyl6GAqAC.VFm_default" href="Association_9GmJyl6GAqAC_VFh.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="128.0, 298.0, 128.0, 383.0, 142.0, 383.0, 142.0, 298.0" coords2="128.0, 298.0, 128.0, 383.0, 142.0, 383.0, 142.0, 298.0" shape="poly" alt=":Association" id="areadiagram_map_R5HJyl6GAqAC.VIa_default" href="Association_I5HJyl6GAqAC_VIV.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="120.0, 70.0, 120.0, 138.0, 134.0, 138.0, 134.0, 70.0" coords2="120.0, 70.0, 120.0, 138.0, 134.0, 138.0, 134.0, 70.0" shape="poly" alt=":Association" id="areadiagram_map_si3Jyl6GAqAC.VIm_default" href="Association_DC3Jyl6GAqAC_VIh.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="239.0, 438.0, 239.0, 452.0, 330.0, 452.0, 330.0, 438.0" coords2="239.0, 438.0, 239.0, 452.0, 330.0, 452.0, 330.0, 438.0" shape="poly" alt=":Association" id="areadiagram_map_LUApyl6GAqAC.VJA_default" href="Association_RUApyl6GAqAC_VI7.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="446.0, 141.0, 446.0, 161.0, 460.0, 161.0, 460.0, 141.0" coords2="446.0, 141.0, 446.0, 161.0, 460.0, 161.0, 460.0, 141.0" shape="poly" alt=":Anchor" id="areadiagram_map_RYkWGl6GAqAC.W9o_default" href="Anchor_PokWGl6GAqAC_W9n.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="539.0, 449.0, 539.0, 463.0, 598.0, 463.0, 598.0, 449.0" coords2="539.0, 449.0, 539.0, 463.0, 598.0, 463.0, 598.0, 449.0" shape="poly" alt=":Association" id="areadiagram_map_nI1pGl6GAqAC.YNB_default" href="Association_WI1pGl6GAqAC_YM8.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1226.0, 338.0, 1226.0, 383.0, 1240.0, 383.0, 1240.0, 338.0" coords2="1226.0, 338.0, 1226.0, 383.0, 1240.0, 383.0, 1240.0, 338.0" shape="poly" alt=":Constraint" id="areadiagram_map_pS73ml6GAqAC.ZB0_default" href="Constraint_sS73ml6GAqAC_ZBz.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1307.0, 450.0, 1307.0, 464.0, 1426.0, 464.0, 1426.0, 450.0" coords2="1307.0, 450.0, 1307.0, 464.0, 1426.0, 464.0, 1426.0, 450.0" shape="poly" alt=":Association" id="areadiagram_map_TPgPml6GAqAC.ZCS_default" href="Association_SPgPml6GAqAC_ZCN.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1229.0, 488.0, 1229.0, 535.0, 1044.0, 535.0, 1044.0, 549.0, 1229.0, 549.0, 1229.0, 552.0, 1243.0, 552.0, 1243.0, 549.0, 1246.0, 549.0, 1246.0, 535.0, 1243.0, 535.0, 1243.0, 488.0" coords2="1229.0, 488.0, 1229.0, 535.0, 1044.0, 535.0, 1044.0, 549.0, 1229.0, 549.0, 1229.0, 552.0, 1243.0, 552.0, 1243.0, 549.0, 1246.0, 549.0, 1246.0, 535.0, 1243.0, 535.0, 1243.0, 488.0" shape="poly" alt=":Association" id="areadiagram_map_TZoPml6GAqAC.ZCe_default" href="Association_mZoPml6GAqAC_ZCZ.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="941.0, 403.0, 941.0, 478.0, 955.0, 478.0, 955.0, 403.0" coords2="941.0, 403.0, 941.0, 478.0, 955.0, 478.0, 955.0, 403.0" shape="poly" alt=":Association" id="areadiagram_map_wqCtOV6GAqAC.Qln_default" href="Association_kKCtOV6GAqAC_Qli.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="796.0, 369.0, 796.0, 376.0, 806.0, 376.0, 806.0, 383.0, 887.0, 383.0, 887.0, 369.0" coords2="796.0, 369.0, 796.0, 376.0, 806.0, 376.0, 806.0, 383.0, 887.0, 383.0, 887.0, 369.0" shape="poly" alt=":Association" id="areadiagram_map_2sntOV6GAqAC.RIa_default" href="Association_GMntOV6GAqAC_RIV.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="394.0, 528.0, 394.0, 575.0, 408.0, 575.0, 408.0, 528.0" coords2="394.0, 528.0, 394.0, 575.0, 408.0, 575.0, 408.0, 528.0" shape="poly" alt=":Association" id="areadiagram_map_sy3Gc16GAqAC.RqC_default" href="Association_XS3Gc16GAqAC_Rp9.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="330.0, 681.6667, 190.0, 775.0, 190.72728, 776.0, 202.0, 776.0, 202.0, 783.3333, 202.0, 783.3333, 342.0, 690.0, 330.0, 690.0, 330.0, 681.6667" coords2="330.0, 681.6667, 190.0, 775.0, 190.72728, 776.0, 202.0, 776.0, 202.0, 783.3333, 202.0, 783.3333, 342.0, 690.0, 330.0, 690.0, 330.0, 681.6667" shape="poly" alt=":Association" id="areadiagram_map_Y0qmc16GAqAC.Rq__default" href="Association_bUqmc16GAqAC_Rq6.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="269.0, 70.0, 269.0, 610.0, 266.0, 610.0, 266.0, 624.0, 269.0, 624.0, 269.0, 627.0, 283.0, 627.0, 283.0, 624.0, 330.0, 624.0, 330.0, 610.0, 283.0, 610.0, 283.0, 70.0" coords2="269.0, 70.0, 269.0, 610.0, 266.0, 610.0, 266.0, 624.0, 269.0, 624.0, 269.0, 627.0, 283.0, 627.0, 283.0, 624.0, 330.0, 624.0, 330.0, 610.0, 283.0, 610.0, 283.0, 70.0" shape="poly" alt=":Association" id="areadiagram_map_gd.2c16GAqAC.Rsm_default" href="Association_dt_2c16GAqAC_Rsh.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      &amp;lt;b&amp;gt;Not finalized&amp;lt;/b&amp;gt;
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="248, 776, 348, 826" coords2="248, 776, 348, 826" shape="rect" alt="Not finalized:Note" id="areadiagram_map_0HU2c16GAqAC.RsF_default" href="NOTE_MHU2c16GAqAC_RsG.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="52, 776, 202, 846" coords2="52, 776, 202, 846" shape="rect" alt="United:Block" id="areadiagram_map_AUqmc16GAqAC.Rq1_default" href="SysMLBlock_AUqmc16GAqAC_Rq2.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="330, 575, 473, 690" coords2="330, 575, 473, 690" shape="rect" alt="Wireless Sidechannel:Block" id="areadiagram_map_Zi3Gc16GAqAC.Rp4_default" href="SysMLBlock_Zi3Gc16GAqAC_Rp5.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="887, 297, 1069, 403" coords2="887, 297, 1069, 403" shape="rect" alt="Point to Multipoint Node:Block" id="areadiagram_map_0dbNOV6GAqAC.Qk4_default" href="SysMLBlock_MdbNOV6GAqAC_Qk5.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p align=&amp;quot;center&amp;quot; style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;text-align:center;margin-left:0pt;&amp;quot;&amp;gt;
+      Router Specific Hardware to be disclosed
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="1426, 310, 1581, 370" coords2="1426, 310, 1581, 370" shape="rect" alt="Router Specific Hardware to be disclosed:Note" id="areadiagram_map_cxYvml6GAqAC.ZD5_default" href="NOTE_axYvml6GAqAC_ZD6.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="1168, 298, 1298, 338" coords2="1168, 298, 1298, 338" shape="rect" alt="Must be 5GHz:Constraint Block" id="areadiagram_map_Z1F3ml6GAqAC.ZBR_default" href="SysMLConstraintBlock_V1F3ml6GAqAC_ZBS.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="863, 478, 1044, 553" coords2="863, 478, 1044, 553" shape="rect" alt="Transmission of Signal:Block" id="areadiagram_map_5mTXml6GAqAC.Y0e_default" href="SysMLBlock_5mTXml6GAqAC_Y0f.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1145, 383, 1307, 488" coords2="1145, 383, 1307, 488" shape="rect" alt="Ubiquiti 5GHz LTU Pro:Block" id="areadiagram_map_6CFXml6GAqAC.Y0W_default" href="SysMLBlock_6CFXml6GAqAC_Y0X.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1426, 404, 1571, 478" coords2="1426, 404, 1571, 478" shape="rect" alt="Households2:Block" id="areadiagram_map_zp8pGl6GAqAC.YMI_default" href="SysMLBlock_zp8pGl6GAqAC_YMJ.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p align=&amp;quot;center&amp;quot; style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;text-align:center;margin-left:0pt;&amp;quot;&amp;gt;
+      At Grain Leg Location
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="370, 101, 514, 141" coords2="370, 101, 514, 141" shape="rect" alt="At Grain Leg Location:Note" id="areadiagram_map_a4wWGl6GAqAC.W9b_default" href="NOTE_64wWGl6GAqAC_W9c.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="11, 2, 297, 70" coords2="11, 2, 297, 70" shape="rect" alt="Fiber Optics Cable2:Block" id="areadiagram_map_oVlJyl6GAqAC.VHK_default" href="SysMLBlock_YVlJyl6GAqAC_VHL.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','11, 2, 297, 70',new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_QRIBCl6GAqAADyNO.html/Fiber Optics Cable Activity Diagram/ActivityDiagram'),new Array(),new Array(),new Array()),hideReferenceIcon(),showSubdiagramIcon('diagram', '11, 2, 297, 70'),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      Ubiquiti EdgepPoint
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      Features FiberProtect to significantly reduce electrostatic discharge 
+      failures and electromagnetic interference, greatly improve data signal 
+      integrity, and consolidate the wired data back-haul to a single fiber 
+      cable run for long-distance connectivity.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="598, 376, 806, 521" coords2="598, 376, 806, 521" shape="rect" alt="Ubiquiti EdgePoint:Block" id="areadiagram_map_tHavXF6GAqAC.QzV_default" href="SysMLBlock_c_Y_XF6GAqAC_Qv_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      LightSaber Optics 12RU
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      12U 24&amp;quot; lockable outdoor wall mount server rack cabinets are ideal for 
+      applications where your expensive and sensitive network equipment is 
+      exposed environmental factors such as dust and water. The cabinet design 
+      allows natural wind cooling through filtered vents on the front door. 
+      For added protection, there is a water and dust proof polyurethane door 
+      joint strip. The outdoor server rack also has a dual fan kit included in 
+      the roof with a dust proof cover greater airflow/cooling. The fans are 
+      serviceable by lifting pivoting rain hood, and the front door dust 
+      filters are easily accessible for cleaning. All fixtures are internal to 
+      the cabinet to provide a secure solution.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="294, 161, 590, 310" coords2="294, 161, 590, 310" shape="rect" alt="Intelligent Router Case:Block" id="areadiagram_map_y4U3XF6GAqAC.Qye_default" href="SysMLBlock_G4U3XF6GAqAC_Qyf.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      pfSenseSwitch
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      19&amp;quot; rack mount system is a state of the art Security Gateway appliance 
+      with pfSence Plus software, featuring the 8 Core Intel Xeon D-1537 
+      processor with AES-NI to support a high level of I/O throughput and 
+      optimal performance per watt. Can be configured as a firewall, LAN or 
+      WAN router, VPN appliance, DHCP Server, DNS Server, and IDS/IPS with 
+      optional packages to deliver a high performance, high throughput 
+      front-line security architecture at an excellent price per gigabit.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="330, 383, 539, 528" coords2="330, 383, 539, 528" shape="rect" alt="pfSense Router:Block" id="areadiagram_map_i5HhXF6GAqAC.Qwp_default" href="SysMLBlock_i5HhXF6GAqAC_Qwq.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      Ubiquiti EdgepPoint
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      Features FiberProtect to significantly reduce electrostatic discharge 
+      failures and electromagnetic interference, greatly improve data signal 
+      integrity, and consolidate the wired data back-haul to a single fiber 
+      cable run for long-distance connectivity.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="31, 383, 239, 528" coords2="31, 383, 239, 528" shape="rect" alt="Ubiquiti EdgePoint:Block" id="areadiagram_map_c.Y.XF6GAqAC.Qv9_default" href="SysMLBlock_c_Y_XF6GAqAC_Qv_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      Ubiquiti airFiber 60LR
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      Radio designed for high-throughput connectivity over an extended range. 
+      Features the integrated high-gain dish antenna for high speed, 
+      long-range performance Point-to-Point links.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="11, 138, 260, 298" coords2="11, 138, 260, 298" shape="rect" alt="Ubiquiti airFiber60LR 60GHz:Block" id="areadiagram_map__P66XF6GAqAC.Qux_default" href="SysMLBlock_Ev66XF6GAqAC_Quy.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="1, 85, 821, 762" coords2="1, 85, 821, 762" shape="rect" alt=":Rectangle" id="areadiagram_map_t.87ml6GAqAC.YyF_default" href="Rectangle_9_87ml6GAqAC_YyG.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="834, 255, 1365, 655" coords2="834, 255, 1365, 655" shape="rect" alt=":Rectangle" id="areadiagram_map_YnJ7ml6GAqAC.Yyc_default" href="Rectangle_4nJ7ml6GAqAC_Yyd.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Note.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Note.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="NOTE_MHU2c16GAqAC_RsG.html" class="ItemLink">N/A : Note</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      <b>Not finalized</b>
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Block.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Block.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLBlock_AUqmc16GAqAC_Rq2.html" class="ItemLink">United : Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Block.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Block.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLBlock_Zi3Gc16GAqAC_Rp5.html" class="ItemLink">Wireless Sidechannel : Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Block.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Block.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLBlock_MdbNOV6GAqAC_Qk5.html" class="ItemLink">Point to Multipoint Node : Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Note.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Note.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="NOTE_axYvml6GAqAC_ZD6.html" class="ItemLink">N/A : Note</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p align="center" style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;text-align:center;margin-left:0pt;">
+      Router Specific Hardware to be disclosed
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/ConstraintBlock.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/ConstraintBlock.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLConstraintBlock_V1F3ml6GAqAC_ZBS.html" class="ItemLink">Must be 5GHz : Constraint Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Block.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Block.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLBlock_5mTXml6GAqAC_Y0f.html" class="ItemLink">Transmission of Signal : Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Block.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Block.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLBlock_6CFXml6GAqAC_Y0X.html" class="ItemLink">Ubiquiti 5GHz LTU Pro : Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Block.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Block.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLBlock_zp8pGl6GAqAC_YMJ.html" class="ItemLink">Households2 : Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Note.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Note.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="NOTE_64wWGl6GAqAC_W9c.html" class="ItemLink">N/A : Note</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p align="center" style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;text-align:center;margin-left:0pt;">
+      At Grain Leg Location
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Block.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Block.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLBlock_YVlJyl6GAqAC_VHL.html" class="ItemLink">Fiber Optics Cable2 : Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Block.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Block.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLBlock_c_Y_XF6GAqAC_Qv_.html" class="ItemLink">Ubiquiti EdgePoint : Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      Ubiquiti EdgepPoint
+    </p>
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      Features FiberProtect to significantly reduce electrostatic discharge 
+      failures and electromagnetic interference, greatly improve data signal 
+      integrity, and consolidate the wired data back-haul to a single fiber 
+      cable run for long-distance connectivity.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Block.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Block.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLBlock_G4U3XF6GAqAC_Qyf.html" class="ItemLink">Intelligent Router Case : Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      LightSaber Optics 12RU
+    </p>
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      12U 24&quot; lockable outdoor wall mount server rack cabinets are ideal for 
+      applications where your expensive and sensitive network equipment is 
+      exposed environmental factors such as dust and water. The cabinet design 
+      allows natural wind cooling through filtered vents on the front door. 
+      For added protection, there is a water and dust proof polyurethane door 
+      joint strip. The outdoor server rack also has a dual fan kit included in 
+      the roof with a dust proof cover greater airflow/cooling. The fans are 
+      serviceable by lifting pivoting rain hood, and the front door dust 
+      filters are easily accessible for cleaning. All fixtures are internal to 
+      the cabinet to provide a secure solution.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Block.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Block.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLBlock_i5HhXF6GAqAC_Qwq.html" class="ItemLink">pfSense Router : Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      pfSenseSwitch
+    </p>
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      19&quot; rack mount system is a state of the art Security Gateway appliance 
+      with pfSence Plus software, featuring the 8 Core Intel Xeon D-1537 
+      processor with AES-NI to support a high level of I/O throughput and 
+      optimal performance per watt. Can be configured as a firewall, LAN or 
+      WAN router, VPN appliance, DHCP Server, DNS Server, and IDS/IPS with 
+      optional packages to deliver a high performance, high throughput 
+      front-line security architecture at an excellent price per gigabit.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Block.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Block.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="SysMLBlock_Ev66XF6GAqAC_Quy.html" class="ItemLink">Ubiquiti airFiber60LR 60GHz : Block</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      Ubiquiti airFiber 60LR
+    </p>
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      Radio designed for high-throughput connectivity over an extended range. 
+      Features the integrated high-gain dish antenna for high speed, 
+      long-range performance Point-to-Point links.
+    </p>
+  </body></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Proj. Overcome	</div>
+</body>
+</html>

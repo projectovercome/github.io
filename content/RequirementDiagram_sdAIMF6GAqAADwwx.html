@@ -1,0 +1,597 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Requirement Diagram - Requirements - Project Overcome</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Proj. Overcome	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="ZachmanDiagram_Q0KZRl6GAqAADxBx.html" class="PageParentTitle">Framework - Project Overcome : Zachman Framework</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Requirement Diagram - Requirements - Project Overcome		</span>
+<a onclick="javascript: showVpLink('Proj. Overcome 8.5.vpp://diagram/sdAIMF6GAqAADwwx', 'Requirements - Project Overcome\nProj. Overcome 8.5.vpp://diagram/sdAIMF6GAqAADwwx', 'Requirements - Project Overcome', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|695.0|823.0|140.0|66.0|TestCase_dyC_t16GAqAC_RMk.html|TestCase_dyC_t16GAqAC_RMk.html|dyC_t16GAqAC.RMj" id="optiondyC_t16GAqAC.RMj">Adding LTE-U Transceivers Simulation : Test Case</option>
+<option value="shape|651.0|734.0|197.0|68.0|TestCase_3KU_t16GAqAC_RMW.html|TestCase_3KU_t16GAqAC_RMW.html|3KU_t16GAqAC.RMV" id="option3KU_t16GAqAC.RMV">Adding Different Traffic Types Simulation : Test Case</option>
+<option value="shape|678.0|653.0|143.0|61.0|TestCase_Q1w_t16GAqAC_RMM.html|TestCase_Q1w_t16GAqAC_RMM.html|Q1w_t16GAqAC.RML" id="optionQ1w_t16GAqAC.RML">Adding Environmental Locations Simulation  : Test Case</option>
+<option value="shape|671.0|574.0|157.0|58.0|TestCase_qo_ft16GAqAC_RMC.html|TestCase_qo_ft16GAqAC_RMC.html|qo_ft16GAqAC.RMB" id="optionqo_ft16GAqAC.RMB">Adding Precipitations Simulation : Test Case</option>
+<option value="shape|651.0|488.0|197.0|66.0|TestCase_2GHft16GAqAC_RL4.html|TestCase_2GHft16GAqAC_RL4.html|2GHft16GAqAC.RL3" id="option2GHft16GAqAC.RL3">Initial Simulation without Obstacles or Complexities : Test Case</option>
+<option value="shape|2.0|26.0|198.0|260.0|Requirement_pk94MF6GAqAADwxE.html|Requirement_pk94MF6GAqAADwxE.html|Jk94MF6GAqAADwxD" id="optionJk94MF6GAqAADwxD">Economic : Requirement</option>
+<option value="shape|2.0|369.0|198.0|231.0|Requirement_3yzGCF6GAqAADxWn.html|Requirement_3yzGCF6GAqAADxWn.html|3yzGCF6GAqAADxWm" id="option3yzGCF6GAqAADxWm">Entrepreneurship  : Requirement</option>
+<option value="shape|414.0|26.0|198.0|155.0|Requirement_xTJOCF6GAqAADxc2.html|Requirement_xTJOCF6GAqAADxc2.html|Kv9uCF6GAqAADx_a" id="optionKv9uCF6GAqAADx_a">Social : Requirement</option>
+<option value="shape|241.0|255.0|197.0|192.0|Requirement_kngeCF6GAqAADyB9.html|Requirement_kngeCF6GAqAADyB9.html|kngeCF6GAqAADyB8" id="optionkngeCF6GAqAADyB8">Reach : Requirement</option>
+<option value="shape|454.0|255.0|197.0|200.0|Requirement_8nNeCF6GAqAADyDO.html|Requirement_8nNeCF6GAqAADyDO.html|8nNeCF6GAqAADyDN" id="option8nNeCF6GAqAADyDN">Future Development : Requirement</option>
+<option value="shape|667.0|255.0|195.0|200.0|Requirement_mGXpCF6GAqAADyFv.html|Requirement_mGXpCF6GAqAADyFv.html|mGXpCF6GAqAADyFu" id="optionmGXpCF6GAqAADyFu">Education : Requirement</option>
+<option value="shape|1020.0|2.0|197.0|197.0|Requirement_ZWXRCF6GAqAADyE_.html|Requirement_ZWXRCF6GAqAADyE_.html|ZWXRCF6GAqAADyE." id="optionZWXRCF6GAqAADyE.">Technological : Requirement</option>
+<option value="shape|917.0|286.0|198.0|268.0|Requirement_jrgrCF6GAqAADyHO.html|Requirement_jrgrCF6GAqAADyHO.html|DrgrCF6GAqAADyHN" id="optionDrgrCF6GAqAADyHN">Technical Specs : Requirement</option>
+<option value="shape|1134.0|286.0|198.0|186.0|Requirement_ify4iF6GAqAADyIa.html|Requirement_ify4iF6GAqAADyIa.html|Cfy4iF6GAqAADyIZ" id="optionCfy4iF6GAqAADyIZ">Service : Requirement</option>
+<option value="shape|1349.0|286.0|198.0|216.0|Requirement_Owt4iF6GAqAADyJE.html|Requirement_Owt4iF6GAqAADyJE.html|Owt4iF6GAqAADyJD" id="optionOwt4iF6GAqAADyJD">Modularity : Requirement</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Requirements_Project_Overcome.png" usemap="#diagram_map" class="Image" width="1551" height="893"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="848.0, 513.0, 848.0, 527.0, 917.0, 527.0, 917.0, 513.0" coords2="848.0, 513.0, 848.0, 527.0, 917.0, 527.0, 917.0, 513.0" shape="poly" alt=":Verify" id="areadiagram_map_aTigd16GAqAC.ROQ_default" href="Verify_ITigd16GAqAC_ROP.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="946.0, 554.0, 946.0, 601.0, 828.0, 601.0, 828.0, 615.0, 946.0, 615.0, 946.0, 618.0, 960.0, 618.0, 960.0, 615.0, 963.0, 615.0, 963.0, 601.0, 960.0, 601.0, 960.0, 554.0" coords2="946.0, 554.0, 946.0, 601.0, 828.0, 601.0, 828.0, 615.0, 946.0, 615.0, 946.0, 618.0, 960.0, 618.0, 960.0, 615.0, 963.0, 615.0, 963.0, 601.0, 960.0, 601.0, 960.0, 554.0" shape="poly" alt=":Verify" id="areadiagram_map_zE6gd16GAqAC.RO0_default" href="Verify_6E6gd16GAqAC_ROz.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="983.0, 554.0, 983.0, 670.0, 821.0, 670.0, 821.0, 684.0, 983.0, 684.0, 983.0, 687.0, 997.0, 687.0, 997.0, 684.0, 1000.0, 684.0, 1000.0, 670.0, 997.0, 670.0, 997.0, 554.0" coords2="983.0, 554.0, 983.0, 670.0, 821.0, 670.0, 821.0, 684.0, 983.0, 684.0, 983.0, 687.0, 997.0, 687.0, 997.0, 684.0, 1000.0, 684.0, 1000.0, 670.0, 997.0, 670.0, 997.0, 554.0" shape="poly" alt=":Verify" id="areadiagram_map_oPmgd16GAqAC.RO6_default" href="Verify_13mgd16GAqAC_RO5.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1025.0, 554.0, 1025.0, 756.0, 848.0, 756.0, 848.0, 770.0, 1025.0, 770.0, 1025.0, 773.0, 1039.0, 773.0, 1039.0, 770.0, 1042.0, 770.0, 1042.0, 756.0, 1039.0, 756.0, 1039.0, 554.0" coords2="1025.0, 554.0, 1025.0, 756.0, 848.0, 756.0, 848.0, 770.0, 1025.0, 770.0, 1025.0, 773.0, 1039.0, 773.0, 1039.0, 770.0, 1042.0, 770.0, 1042.0, 756.0, 1039.0, 756.0, 1039.0, 554.0" shape="poly" alt=":Verify" id="areadiagram_map_HlOgd16GAqAC.RPA_default" href="Verify_GlOgd16GAqAC_RO_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1054.0, 554.0, 1054.0, 855.0, 835.0, 855.0, 835.0, 869.0, 1054.0, 869.0, 1054.0, 872.0, 1068.0, 872.0, 1068.0, 869.0, 1071.0, 869.0, 1071.0, 855.0, 1068.0, 855.0, 1068.0, 554.0" coords2="1054.0, 554.0, 1054.0, 855.0, 835.0, 855.0, 835.0, 869.0, 1054.0, 869.0, 1054.0, 872.0, 1068.0, 872.0, 1068.0, 869.0, 1071.0, 869.0, 1071.0, 855.0, 1068.0, 855.0, 1068.0, 554.0" shape="poly" alt=":Verify" id="areadiagram_map_CZ.gd16GAqAC.RPG_default" href="Verify_Lp_gd16GAqAC_RPF.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="695, 823, 835, 889" coords2="695, 823, 835, 889" shape="rect" alt="Adding LTE-U Transceivers Simulation:Test Case" id="areadiagram_map_dyC_t16GAqAC.RMj_default" href="TestCase_dyC_t16GAqAC_RMk.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="651, 734, 848, 802" coords2="651, 734, 848, 802" shape="rect" alt="Adding Different Traffic Types Simulation:Test Case" id="areadiagram_map_3KU_t16GAqAC.RMV_default" href="TestCase_3KU_t16GAqAC_RMW.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="678, 653, 821, 714" coords2="678, 653, 821, 714" shape="rect" alt="Adding Environmental Locations Simulation :Test Case" id="areadiagram_map_Q1w_t16GAqAC.RML_default" href="TestCase_Q1w_t16GAqAC_RMM.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="671, 574, 828, 632" coords2="671, 574, 828, 632" shape="rect" alt="Adding Precipitations Simulation:Test Case" id="areadiagram_map_qo_ft16GAqAC.RMB_default" href="TestCase_qo_ft16GAqAC_RMC.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="651, 488, 848, 554" coords2="651, 488, 848, 554" shape="rect" alt="Initial Simulation without Obstacles or Complexities:Test Case" id="areadiagram_map_2GHft16GAqAC.RL3_default" href="TestCase_2GHft16GAqAC_RL4.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      machine learning algorithms, progressive implementation of last-mile 
+      network architecture in incremental stages, serve as foundation for 
+      large scalable network deployments
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="1349, 286, 1547, 502" coords2="1349, 286, 1547, 502" shape="rect" alt="Modularity:Requirement" id="areadiagram_map_Owt4iF6GAqAADyJD_default" href="Requirement_Owt4iF6GAqAADyJE.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      tailor data streams, monitor traffic history of the community it is 
+      serving
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="1134, 286, 1332, 472" coords2="1134, 286, 1332, 472" shape="rect" alt="Service:Requirement" id="areadiagram_map_Cfy4iF6GAqAADyIZ_default" href="Requirement_ify4iF6GAqAADyIa.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      wirelessly connected to a nearby fiber optical network, receives edge 
+      switch's transmissions, direct to correct point to multipoint
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="917, 286, 1115, 566.0" coords2="917, 286, 1115, 566.0" shape="rect" alt="Technical Specs:Requirement" id="areadiagram_map_DrgrCF6GAqAADyHN_default" href="Requirement_jrgrCF6GAqAADyHO.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','917, 286, 1115, 554',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('BlockDefinitionDiagram_nA_ZRl6GAqAADxCj.html?shapeid=Wm5ZRl6GAqAADxH6/Network Architecture/Block','BlockDefinitionDiagram_qO4r8l6GAqAADxAB.html?shapeid=tmMr8l6GAqAADxAk/RFoF Connection Reciever/Block')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '917, 286, 1115, 554'),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      Education Measures will include interest in attending college and 
+      extension education program enrollment
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="667, 255, 862, 467.0" coords2="667, 255, 862, 467.0" shape="rect" alt="Education:Requirement" id="areadiagram_map_mGXpCF6GAqAADyFu_default" href="Requirement_mGXpCF6GAqAADyFv.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','667, 255, 862, 455',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('InteractionDiagram_69bnBV6GAqAAvBPi.html?shapeid=YCwKpV6GAqAAvAf_/Information and Project Details/ObjectMessage','InteractionDiagram_69bnBV6GAqAAvBPi.html?shapeid=t37ypV6GAqAAvAfl/Interest in project/ObjectMessage','InteractionDiagram_69bnBV6GAqAAvBPi.html?shapeid=GAEKpV6GAqAAvAgS/Further Interest/ObjectMessage')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '667, 255, 862, 455'),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      Custom-build an intelligent router to stitch together multiple 
+      low-bandwidth radios
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="1020, 2, 1217, 199" coords2="1020, 2, 1217, 199" shape="rect" alt="Technological:Requirement" id="areadiagram_map_ZWXRCF6GAqAADyE._default" href="Requirement_ZWXRCF6GAqAADyE_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      This software will be publicly shared to support long-term open-source 
+      development
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="454, 255, 651, 467.0" coords2="454, 255, 651, 467.0" shape="rect" alt="Future Development:Requirement" id="areadiagram_map_8nNeCF6GAqAADyDN_default" href="Requirement_8nNeCF6GAqAADyDO.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','454, 255, 651, 455',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('InteractionDiagram_69bnBV6GAqAAvBPi.html?shapeid=h7mqpV6GAqAAvAgl/Testing Form/ObjectMessage')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '454, 255, 651, 455'),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      We will reach approximately 30-50 households in Turney
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="241, 255, 438, 459.0" coords2="241, 255, 438, 459.0" shape="rect" alt="Reach:Requirement" id="areadiagram_map_kngeCF6GAqAADyB8_default" href="Requirement_kngeCF6GAqAADyB9.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','241, 255, 438, 447',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('InteractionDiagram_69bnBV6GAqAAvBPi.html?shapeid=y9W6pV6GAqAAvAg5/Volunteering Households/ObjectMessage','InteractionDiagram_69bnBV6GAqAAvBPi.html?shapeid=aImNxV6GAqAAvBRa/Ice Cream Social/ObjectMessage')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '241, 255, 438, 447'),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="414, 26, 612, 181" coords2="414, 26, 612, 181" shape="rect" alt="Social:Requirement" id="areadiagram_map_Kv9uCF6GAqAADx_a_default" href="Requirement_xTJOCF6GAqAADxc2.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','414, 26, 612, 181',new Array(),new Array(),new Array(),new Array(),new Array(),new Array('InteractionDiagram_69bnBV6GAqAAvBPi.html/Community Sequence Diagram/InteractionDiagram'),new Array(),new Array(),new Array()),hideReferenceIcon(),showSubdiagramIcon('diagram', '414, 26, 612, 181'),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      &amp;quot;Entrepreneurship measures will include interest in starting a business, 
+      virtual Cup of Joe attendance, and inquiries with local business 
+      technical assistance providers
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="2, 369, 200, 600" coords2="2, 369, 200, 600" shape="rect" alt="Entrepreneurship :Requirement" id="areadiagram_map_3yzGCF6GAqAADxWm_default" href="Requirement_3yzGCF6GAqAADxWn.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;&amp;quot;&amp;gt;
+      Lastly, we will measure changes in education and entrepreneurship access 
+      and outcomes.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="2, 26, 200, 286" coords2="2, 26, 200, 286" shape="rect" alt="Economic:Requirement" id="areadiagram_map_Jk94MF6GAqAADwxD_default" href="Requirement_pk94MF6GAqAADwxE.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/TestCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/TestCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="TestCase_dyC_t16GAqAC_RMk.html" class="ItemLink">Adding LTE-U Transceivers Simulation : Test Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/TestCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/TestCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="TestCase_3KU_t16GAqAC_RMW.html" class="ItemLink">Adding Different Traffic Types Simulation : Test Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/TestCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/TestCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="TestCase_Q1w_t16GAqAC_RMM.html" class="ItemLink">Adding Environmental Locations Simulation  : Test Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/TestCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/TestCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="TestCase_qo_ft16GAqAC_RMC.html" class="ItemLink">Adding Precipitations Simulation : Test Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/TestCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/TestCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="TestCase_2GHft16GAqAC_RL4.html" class="ItemLink">Initial Simulation without Obstacles or Complexities : Test Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_pk94MF6GAqAADwxE.html" class="ItemLink">Economic : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      Lastly, we will measure changes in education and entrepreneurship access 
+      and outcomes.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_3yzGCF6GAqAADxWn.html" class="ItemLink">Entrepreneurship  : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      &quot;Entrepreneurship measures will include interest in starting a business, 
+      virtual Cup of Joe attendance, and inquiries with local business 
+      technical assistance providers
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_xTJOCF6GAqAADxc2.html" class="ItemLink">Social : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_kngeCF6GAqAADyB9.html" class="ItemLink">Reach : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      We will reach approximately 30-50 households in Turney
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_8nNeCF6GAqAADyDO.html" class="ItemLink">Future Development : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      This software will be publicly shared to support long-term open-source 
+      development
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_mGXpCF6GAqAADyFv.html" class="ItemLink">Education : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      Education Measures will include interest in attending college and 
+      extension education program enrollment
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_ZWXRCF6GAqAADyE_.html" class="ItemLink">Technological : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      Custom-build an intelligent router to stitch together multiple 
+      low-bandwidth radios
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_jrgrCF6GAqAADyHO.html" class="ItemLink">Technical Specs : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      wirelessly connected to a nearby fiber optical network, receives edge 
+      switch's transmissions, direct to correct point to multipoint
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_ify4iF6GAqAADyIa.html" class="ItemLink">Service : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      tailor data streams, monitor traffic history of the community it is 
+      serving
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Requirement.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Requirement.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Requirement_Owt4iF6GAqAADyJE.html" class="ItemLink">Modularity : Requirement</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;margin-left:0;">
+    <p style="margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;">
+      machine learning algorithms, progressive implementation of last-mile 
+      network architecture in incremental stages, serve as foundation for 
+      large scalable network deployments
+    </p>
+  </body></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Proj. Overcome	</div>
+</body>
+</html>
